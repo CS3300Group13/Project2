@@ -6,7 +6,8 @@ class FeedView(TemplateView):
     template_name = 'feed/feed.html'
     
     def get(self, request):
-        return render(request, self.template_name)
+        context = {"pal": request.user.pal}
+        return render(request, self.template_name, context)
     
     def post(self, request):
         pass
