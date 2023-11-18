@@ -1,0 +1,57 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+  <title>PantryPal | Register</title>
+{% endblock %}
+
+{% block layout %}
+  <section class="vh-100" style="background-color: #508bfc;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-7 col-xl-6">
+          <div class="card shadow-2-strong" style="border-radius: 1rem;">
+            <div class="card-body p-5 text-center">
+              <h3 class="mb-5">Register</h3>
+              <form method="POST">
+                {% csrf_token %}
+                <div class="row">
+                  <div class="col-6 form-outline mb-4">
+                    <input name="first_name" class="form-control form-control-lg" />
+                    <label class="form-label" for="typeEmailX-2">First Name</label>
+                  </div>
+
+                  <div class="col-6 form-outline mb-4">
+                    <input name="last_name" class="form-control form-control-lg" />
+                    <label class="form-label" for="typeEmailX-2">Last Name</label>
+                  </div>
+                </div>
+                <div class="form-outline mb-4">
+                  <input name="username" class="form-control form-control-lg" />
+                  <label class="form-label" for="typeEmailX-2">Username</label>
+                </div>
+
+                <div class="row">
+                  <div class="col-6 form-outline mb-4">
+                    <input type="password" name="password1" class="form-control form-control-lg" />
+                    <label class="form-label" for="typeEmailX-2">Password</label>
+                  </div>
+
+                  <div class="col-6 form-outline mb-4">
+                    <input type="password" name="password2" class="form-control form-control-lg" />
+                    <label class="form-label" for="typeEmailX-2">Re-enter Password</label>
+                  </div>
+                </div>
+
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Register</button>
+              </form>
+
+              <p class="mb-0 mt-3">
+                <a href="{% url 'users:login' %}" class="text-50 fw-bold">Back to Login</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

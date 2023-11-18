@@ -1,1 +1,13 @@
-pantry
+{% extends 'base/layout.html' %}
+
+{% block title %}
+  <title>PantryPal | Pantry</title>
+{% endblock %}
+
+{% block body %}
+  <div class="container">
+    {% for pantry_item in pantry_items %}
+      {{ pantry_item.name }} - {{ pantry_item.quantity }}
+    {% endfor %}
+  </div>
+{% endblock %}
