@@ -41,9 +41,9 @@
     {% for pantry_item in pantry_items %}
     <div class="row">
       {{ pantry_item.name }} - {{ pantry_item.quantity }} 
-      <a class="" href={% url 'pantry:delete_item' pantry_item.pk %}>delete</a>
-    </div>
       
+    </div>
+    <a type="button" class="btn btn-danger" href="{% url 'pantry:delete_item' pantry_item.pk %}">delete</a>
     {% endfor %}
   </div>
 {% endblock %}
