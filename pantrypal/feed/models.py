@@ -13,7 +13,10 @@ class Post(models.Model):
         null=True,
         blank=True,
     )
-    image = models.ImageField()
+    image = models.ImageField(
+        null=True,
+        blank=True,
+    )
     
     def __str__(self):
         return f'{self.pal}\'s {self.pk} post'

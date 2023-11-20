@@ -228,22 +228,20 @@
               <div class="cover-body d-flex justify-content-between align-items-center">
                 <div>
                   <img class="profile-pic" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="profile" />
-                  <span class="profile-name">{{pal.user.first_name}}</span>
+                  <span class="profile-name">{{ request.user.first_name }} {{ request.user.last_name }}</span>
                 </div>
                 <div class="d-none d-md-block">
-                  <a class="btn btn-primary btn-icon-text btn-edit-profile" href="{% url 'users:logout' %}">
-                    Logout
-                  </a>
+                  <a class="btn btn-primary btn-icon-text btn-edit-profile" href="{% url 'users:logout' %}">Logout</a>
                 </div>
               </div>
             </div>
             <div class="header-links">
               <ul class="links d-flex align-items-center mt-3 mt-md-0">
-                <li class="header-link-item d-flex align-items-center active">
+                <li class="header-link-item d-flex align-items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-columns mr-1 icon-md">
                     <path d="M12 3h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-7m0-18H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7m0-18v18"></path>
                   </svg>
-                  <a class="pt-1px d-none d-md-block" href="#">Feed</a>
+                  <a class="pt-1px d-none d-md-block" href="{% url 'feed:feed' %}">Feed</a>
                 </li>
                 <li class="header-link-item ml-3 pl-3 border-left d-flex align-items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user mr-1 icon-md">
@@ -267,7 +265,7 @@
                     <circle cx="8.5" cy="8.5" r="1.5"></circle>
                     <polyline points="21 15 16 10 5 21"></polyline>
                   </svg>
-                  <a class="pt-1px d-none d-md-block" href="#">Recipes</a>
+                  <a class="pt-1px d-none d-md-block" href="{% url 'recipes:recipes' %}">Recipes</a>
                 </li>
                 <li class="header-link-item ml-3 pl-3 border-left d-flex align-items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-video mr-1 icon-md">
@@ -283,5 +281,8 @@
       </div>
     </div>
   </div>
-  {% block body %}{% endblock body %}
+  {% block body %}
+  {% endblock %}
+{% endblock %}
+{% block modal %}
 {% endblock %}
