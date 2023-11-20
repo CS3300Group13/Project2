@@ -1,11 +1,9 @@
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 
-from.models import PantryItem
 
-
-class PantryView(TemplateView):
-    template_name = 'pantry/pantry.html'
+class RecipeView(TemplateView):
+    template_name = 'recipes/recipes.html'
     
     def get(self, request):
         if not request.user.is_authenticated:
