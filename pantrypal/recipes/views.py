@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 
 from .models import Recipe
+from ..pantry.models import PantryItem
 
 
 class RecipeView(TemplateView):
@@ -25,6 +26,18 @@ class DeleteRecipeView(TemplateView):
 class AddRecipeView(TemplateView):
     
     def get(self, request):
+
+        import openai
+
+        #foodItems = request.POST.get('pantry')
+        grains = PantryItem.objects.filter(pal=request.user.pal, foodGroup="Grains")
+        proteins = PantryItem.objects.filter(pal=request.user.pal, foodGroup="Proteins")
+        dairy = PantryItem.objects.filter(pal=request.user.pal, foodGroup="Dairy")
+        fruits = PantryItem.objects.filter(pal=request.user.pal, foodGroup="Fruits")
+        vegetables = PantryItem.objects.filter(pal=request.user.pal, foodGroup="Vegetables")
+        oils = PantryItem.objects.filter(pal=request.user.pal, foodGroup="Oils")
+        condiments = PantryItem.objects.filter(pal=request.user.pal, foodGroup="Condiments")
+
         alignmentPrompt = """
         You are a food recipe generator for an app called 'pantrypal' to create delicious ideas for meals.
         You will be given a list of ingredients that a user has, and you should ONLY use these ingredients.
@@ -42,6 +55,16 @@ class AddRecipeView(TemplateView):
         Step 7: {insert_step_7_step}
         Final Step: Enjoy!
         """
+
+        userPrompt = f"Create a recipe using the following food items:\nGrains: f{grains}\n Proteins: f{proteins}\nDairy: f{dairy}\nFruits: f{fruits}\nVegetables: f{vegetables}\nOils: f{oils}\nCondiments: f{condiments}"
+
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": alignmentPrompt},
+                {"role": "user", "content": userPrompt}
+            ]
+        )
 
 
 
