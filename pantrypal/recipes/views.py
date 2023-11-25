@@ -31,12 +31,67 @@ class AddRecipeView(TemplateView):
 
         #foodItems = request.POST.get('pantry')
         grains = PantryItem.objects.filter(pal=request.user.pal, foodGroup="Grains")
+        new_grains = ""
+        for g in grains:
+            new_grains += g.name + ", "
+        if (new_grains == ""):
+            grains = "None"
+        else:
+            grains = new_grains[:-2]
+
         proteins = PantryItem.objects.filter(pal=request.user.pal, foodGroup="Proteins")
+        new_proteins = ""
+        for g in proteins:
+            new_proteins += g.name + ", "
+        if (new_proteins == ""):
+            proteins = "None"
+        else:
+            proteins = new_proteins[:-2]
+
         dairy = PantryItem.objects.filter(pal=request.user.pal, foodGroup="Dairy")
+        new_dairy = ""
+        for g in dairy:
+            new_dairy += g.name + ", "
+        if (new_dairy == ""):
+            dairy = "None"
+        else:
+            dairy = new_dairy[:-2]
+
         fruits = PantryItem.objects.filter(pal=request.user.pal, foodGroup="Fruits")
+        new_fruits = ""
+        for g in fruits:
+            new_fruits += g.name + ", "
+        if (new_fruits == ""):
+            fruits = "None"
+        else:
+            fruits = new_fruits[:-2]
+
         vegetables = PantryItem.objects.filter(pal=request.user.pal, foodGroup="Vegetables")
+        new_vegetables = ""
+        for g in vegetables:
+            new_vegetables += g.name + ", "
+        if (new_vegetables == ""):
+            vegetables = "None"
+        else:
+            vegetables = new_vegetables[:-2]
+
         oils = PantryItem.objects.filter(pal=request.user.pal, foodGroup="Oils")
+        new_oils = ""
+        for g in oils:
+            new_oils += g.name + ", "
+        if (new_oils == ""):
+            oils = "None"
+        else:
+            oils = new_oils[:-2]
+
         condiments = PantryItem.objects.filter(pal=request.user.pal, foodGroup="Condiments")
+        new_condiments = ""
+        for g in condiments:
+            new_condiments += g.name + ", "
+        if (new_condiments == ""):
+            condiments = "None"
+        else:
+            condiments = new_condiments[:-2]
 
         alignmentPrompt = """
         You are a food recipe generator for an app called 'pantrypal' to create delicious ideas for meals.
