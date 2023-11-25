@@ -25,6 +25,11 @@ class DeleteRecipeView(TemplateView):
 class AddRecipeView(TemplateView):
     
     def get(self, request):
+
+        import openai
+
+        #foodItems = request.POST.get('pantry')
+
         alignmentPrompt = """
         You are a food recipe generator for an app called 'pantrypal' to create delicious ideas for meals.
         You will be given a list of ingredients that a user has, and you should ONLY use these ingredients.
@@ -42,6 +47,16 @@ class AddRecipeView(TemplateView):
         Step 7: {insert_step_7_step}
         Final Step: Enjoy!
         """
+
+        userPrompt = f"Create a recipe using the following food items: f{foodItems}"
+
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": alignmentPrompt},
+                {"role": "user", "content": userPrompt}
+            ]
+        )
 
 
 
