@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 
+from .keys import OPEN_AI_VAR
 from .models import Recipe
 from ..pantry.models import PantryItem
 
@@ -28,6 +29,7 @@ class AddRecipeView(TemplateView):
     def get(self, request):
 
         import openai
+        openai.api_key = OPEN_AI_VAR
 
         #foodItems = request.POST.get('pantry')
         grains = PantryItem.objects.filter(pal=request.user.pal, foodGroup="Grains")
