@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 
-from keys import OPEN_AI_VAR
-from models import Recipe
-from ..pantry.models import PantryItem
+from keys.keys import OPEN_AI_VAR
+from recipes.models import Recipe
+from pantry.models import PantryItem
 
 
 class RecipeView(TemplateView):
