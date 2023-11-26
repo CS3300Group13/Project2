@@ -117,7 +117,7 @@ class AddRecipeView(TemplateView):
                     Dairy: {dairy}\nFruits: {fruits}\nVegetables: {vegetables}\n
                     Oils: {oils}\nCondiments: {condiments}"""
 
-        print(userPrompt)
+        #print(userPrompt)
 
         response = str(openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
@@ -128,7 +128,7 @@ class AddRecipeView(TemplateView):
         ))
 
         recipe_name = response[1].split("Step")[0].strip()
-        steps_parts = "Step 1: " + response.split("Step 1:")[1]
+        steps_parts = "Step 1:" + response.split("Step 1:")[1]
 
 
 
