@@ -128,10 +128,14 @@ class AddRecipeView(TemplateView):
         ))
 
         print(response)
-
-        recipe_name = response[1].split("Step")[0].strip()
-        steps_parts = "Step 1:" + response.split("Step 1:")[1]
-
+        try:
+            recipe_name = response[1].split("Step")[0].strip()
+        except:
+            recipe_name = ""
+        try:
+            steps_parts = "Step 1:" + response.split("Step 1:")[1]
+        except:
+            steps_parts = response
 
 
         # GPT HERE
