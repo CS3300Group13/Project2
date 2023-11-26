@@ -100,7 +100,7 @@ class AddRecipeView(TemplateView):
         You will be given a list of ingredients that a user has, and you should ONLY use these ingredients.
         The recipes should be relatively simple and interesting to make.
         
-        You only give the recipes in the following format, adjusting the number of steps as necessary:
+        It is imperative that you only give the recipes in the following format, adjusting the number of steps as necessary:
         Hi User,
         The name of the recipe is: {insert_recipe_name_here}
         Step 1: {insert_step_1_step}
@@ -117,7 +117,7 @@ class AddRecipeView(TemplateView):
                     Dairy: {dairy}\nFruits: {fruits}\nVegetables: {vegetables}\n
                     Oils: {oils}\nCondiments: {condiments}"""
 
-        #print(userPrompt)
+        print(userPrompt)
 
         response = str(openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
@@ -126,6 +126,8 @@ class AddRecipeView(TemplateView):
                 {"role": "user", "content": userPrompt}
             ]
         ))
+
+        print(response)
 
         recipe_name = response[1].split("Step")[0].strip()
         steps_parts = "Step 1:" + response.split("Step 1:")[1]
