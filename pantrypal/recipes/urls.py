@@ -1,6 +1,6 @@
 from django.urls import path
 
-from . import views
+https://www.pacsun.com/womens/sale/?start=912from . import views
 
 app_name = 'recipes'
 urlpatterns = [

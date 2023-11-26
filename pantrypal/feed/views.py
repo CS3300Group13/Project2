@@ -13,6 +13,8 @@ class FeedView(TemplateView):
         name = request.user.first_name
         friends = request.user.pal.following.all()
         posts = Post.objects.filter(pal__in=friends)
+        ##about = request.user.pal.about
+        # add more lines to context to save about
         context = {'name' : name, 'posts' : posts}
         return render(request, self.template_name, context)
     
