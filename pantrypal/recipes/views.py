@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 
-from .keys import OPEN_AI_VAR
-from .models import Recipe
+from keys import OPEN_AI_VAR
+from models import Recipe
 from ..pantry.models import PantryItem
 
 
@@ -113,20 +113,26 @@ class AddRecipeView(TemplateView):
         Final Step: Enjoy!
         """
 
-        userPrompt = f"Create a recipe using the following food items:\nGrains: f{grains}\n Proteins: f{proteins}\nDairy: f{dairy}\nFruits: f{fruits}\nVegetables: f{vegetables}\nOils: f{oils}\nCondiments: f{condiments}"
+        userPrompt = f"""Create a recipe using the following food items:\nGrains: {grains}\n Proteins: {proteins}\n
+                    Dairy: {dairy}\nFruits: {fruits}\nVegetables: {vegetables}\n
+                    Oils: {oils}\nCondiments: {condiments}"""
 
-        response = openai.ChatCompletion.create(
+        print(userPrompt)
+
+        response = str(openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=[
                 {"role": "system", "content": alignmentPrompt},
                 {"role": "user", "content": userPrompt}
             ]
-        )
+        ))
 
+        recipe_name = response[1].split("Step")[0].strip()
+        steps_parts = "Step 1: " + response.split("Step 1:")[1]
 
 
 
         # GPT HERE
-        new_recipe = Recipe(pal=request.user.pal, name='name from GPT', steps='Steps from GPT')
+        new_recipe = Recipe(pal=request.user.pal, name=recipe_name, steps=steps_parts)
         new_recipe.save()
         return redirect('recipes:recipes')
