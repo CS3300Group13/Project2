@@ -69,12 +69,14 @@ class ProfileView(TemplateView):
         return render(request, self.template_name, context)
     
     def post(self, request):
+        uForm = UserForm(request.POST, instance=request.user)
         form = PalItemForm(request.POST, instance=request.user.pal)
-        uForm = UserForm(request.POST, instance=request.user.pal)
         if form.is_valid():
             form.save()
         if uForm.is_valid():
-            form.save()
+            uForm.save()
+        else:
+            print(form.errors)
         return redirect('users:profile')
 
     
