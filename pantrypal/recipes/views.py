@@ -6,6 +6,8 @@ from recipes.models import Recipe
 from pantry.models import PantryItem
 from feed.models import Post
 
+import json
+
 
 class RecipeView(TemplateView):
     template_name = 'recipes/recipes.html'
@@ -129,14 +131,16 @@ class AddRecipeView(TemplateView):
         ))
 
         print(response)
+        resp_dict = json.loads(response)
+        resp_message = resp_dict["choices"][0]["message"]["content"]
         try:
-            recipe_name = response[1].split("Step")[0].strip()
+            recipe_name = resp_message.split("name of the recipe is:")[1].splitlines()[0].strip()
         except:
             recipe_name = ""
         try:
-            steps_parts = "Step 1:" + response.split("Step 1:")[1]
+            steps_parts = resp_message.split(recipe_name)[1]
         except:
-            steps_parts = response
+            steps_parts = resp_message
 
 
         # GPT HERE
