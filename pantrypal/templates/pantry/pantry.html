@@ -6,9 +6,11 @@
 
 {% block body %}
   <div class="container">
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Item</button>
-
+    <div class="d-flex flex-row m-3">
+      <p class="fs-2">My Pantry</p>
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary fs-4 ms-auto" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Item</button>
+    </div>
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -30,12 +32,13 @@
         </div>
       </div>
     </div>
+    <div class="d-flex flex-row"></div>
     {% for pantry_item in pantry_items %}
-    <div class="row">
-      {{ pantry_item.name }} - {{pantry_item.foodGroup}}
-      
+        <div class="fs-4 mx-5 w-auto my-2">
+          {{ pantry_item.name }}: {{pantry_item.foodGroup}}
+          <a type="button" class="btn btn-danger fs-6 mx-5" href="{% url 'pantry:delete_item' pantry_item.pk %}">Delete</a>
+        </div>
+      {% endfor %}
     </div>
-    <a type="button" class="btn btn-danger" href="{% url 'pantry:delete_item' pantry_item.pk %}">delete</a>
-    {% endfor %}
   </div>
 {% endblock %}
