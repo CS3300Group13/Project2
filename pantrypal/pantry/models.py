@@ -23,6 +23,9 @@ class PantryItem(models.Model):
         blank=True,
         choices = foodGroups,
     )
+    quantity = models.CharField(
+        max_length=20,
+    )
     
     def __str__(self):
         return f'{self.pal}\'s {self.name}'

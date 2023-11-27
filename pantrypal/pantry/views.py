@@ -18,8 +18,9 @@ class PantryView(TemplateView):
         if not request.user.is_authenticated:
             return redirect('users:login')
         new_item = request.POST['item']
-        new_foodGroup = request.POST['quantity']
-        new_pantry_item = PantryItem(pal=request.user.pal, name=new_item, foodGroup=new_foodGroup)
+        new_quantity = request.POST['quantity']
+        new_foodGroup = request.POST['group']
+        new_pantry_item = PantryItem(pal=request.user.pal, name=new_item, foodGroup=new_foodGroup, quantity=new_quantity)
         new_pantry_item.save()
         return redirect('pantry:pantry')
     

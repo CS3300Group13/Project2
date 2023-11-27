@@ -29,6 +29,39 @@
                 <input class="form-control" name="quantity" />
                 <div id="foodQuantity" class="form-text">Enter a number associated with the quantity as well as a unit e.g. 1 loaf for food item bread.</div>
               </div>
+              <div class="mb-3">
+                <label for="foodGroup" class="form-label">Food Group</label>
+                <br>
+                <div>
+                  <input type="radio" id="grain" name="group" value="grain" checked />
+                  <label for="grain">Grain</label>
+                </div>
+                <div>
+                  <input type="radio" id="oil" name="group" value="oil" />
+                  <label for="oil">Oil</label>
+                </div>
+                <div>
+                  <input type="radio" id="dairy" name="group" value="dairy" />
+                  <label for="dairy">Dairy</label>
+                </div>
+                <div>
+                  <input type="radio" id="fruit" name="group" value="fruit" />
+                  <label for="fruit">Fruit</label>
+                </div>
+                <div>
+                  <input type="radio" id="vegetable" name="group" value="vegetable" />
+                  <label for="vegetable">Vegetable</label>
+                </div>
+                <div>
+                  <input type="radio" id="protein" name="group" value="protein" />
+                  <label for="protein">Protein</label>
+                </div>
+                <div>
+                  <input type="radio" id="condiment" name="group" value="condiment" />
+                  <label for="condiment">Condiment</label>
+                </div>
+
+              </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -40,7 +73,7 @@
     </div>
     {% for pantry_item in pantry_items %}
     <div class="row">
-      {{ pantry_item.name }} - {{ pantry_item.quantity }} 
+      {{ pantry_item.name }} - {{ pantry_item.quantity }} - {{pantry_item.foodGroup}}
       
     </div>
     <a type="button" class="btn btn-danger" href="{% url 'pantry:delete_item' pantry_item.pk %}">delete</a>
