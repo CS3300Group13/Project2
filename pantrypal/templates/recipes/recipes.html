@@ -1,0 +1,20 @@
+{% extends 'base/layout.html' %}
+
+{% block title %}
+  <title>PantryPal | Recipes</title>
+{% endblock %}
+
+{% block body %}
+  <div class="container">
+    <!-- Button trigger modal -->
+    <a type="button" class="btn btn-primary" href="{% url 'recipes:add_recipe' %}">Find New Recipe</a>
+
+    {% for recipe in recipes %}
+      <div class="row">
+        {{ recipe.name }} - {{ recipe.steps }}
+        
+      </div>
+      <a type="button" class="btn btn-danger" href="{% url 'recipes:delete_recipe' recipe.pk %}">delete</a>
+    {% endfor %}
+  </div>
+{% endblock %}

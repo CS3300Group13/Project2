@@ -4,6 +4,12 @@ from users.models import Pal
 
 
 class PantryItem(models.Model):
+
+    foodGroups = [("Grains", "Grains"), ("Proteins", "Proteins"), ("Dairy", "Dairy"),
+                  ("Fruits", "Fruits"), ("Vegetables", "Vegetables"),
+                  ("Oils", "Oils"), ("Condiments", "Condiments")]
+
+
     pal = models.ForeignKey(
         to=Pal,
         on_delete=models.CASCADE,
@@ -11,10 +17,11 @@ class PantryItem(models.Model):
     name = models.CharField(
         max_length=20,
     )
-    quantity = models.CharField(
+    foodGroup = models.CharField(
         max_length=30,
         null=True,
         blank=True,
+        choices = foodGroups,
     )
     
     def __str__(self):
