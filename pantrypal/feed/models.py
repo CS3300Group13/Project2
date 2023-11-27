@@ -8,6 +8,11 @@ class Post(models.Model):
         to=Pal,
         on_delete=models.CASCADE,
     )
+    title = models.TextField(
+        max_length=500,
+        null=True,
+        blank=True,
+    )
     text = models.TextField(
         max_length=500,
         null=True,
