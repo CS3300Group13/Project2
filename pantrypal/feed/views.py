@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 
 from .models import Post
+from users.models import Pal
 
 
 class FeedView(TemplateView):
@@ -13,7 +14,9 @@ class FeedView(TemplateView):
         name = request.user.first_name
         friends = request.user.pal.following.all()
         posts = Post.objects.filter(pal__in=friends)
-        context = {'name' : name, 'posts' : posts}
+        follow_list = request.user.pal.following.all()
+        unfollowed_list = Pal.objects.exclude(following__in=follow_list)
+        context = {'name' : name, 'posts' : posts, 'unfollowed_list' : unfollowed_list}
         return render(request, self.template_name, context)
     
     def post(self, request):
