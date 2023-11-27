@@ -1,0 +1,11 @@
+{% extends 'base/layout.html' %}
+
+{% block body %}
+  <div class="container">
+    {% for boop in unfollowed_list %}
+      {{ boop.user.last_name }}
+      <a class="btn btn-primary btn-icon-text btn-edit-profile" href="{% url 'users:add_friend' boop.pk %}">follow</a>
+    {% endfor %}
+
+  </div>
+{% endblock %}
