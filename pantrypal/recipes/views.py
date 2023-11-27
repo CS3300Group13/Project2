@@ -153,6 +153,6 @@ class PostView(TemplateView):
     
     def get(self, request, pk):
         recipe = Recipe.objects.get(pk=pk)
-        post = Post(pal=request.user.pal, text=recipe.steps)
+        post = Post(pal=request.user.pal, title=recipe.name, text=recipe.steps)
         post.save()
         return redirect('feed:feed')
