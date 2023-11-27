@@ -3,6 +3,7 @@ from django.views.generic import TemplateView
 from django.contrib.auth import authenticate, login, logout
 from users.forms import RegistrationForm
 from users.forms import PalItemForm
+from users.forms import UserForm
 from.models import Pal
 
 
@@ -62,16 +63,19 @@ class ProfileView(TemplateView):
         if not request.user.is_authenticated:
             return redirect('users:login')
         #edit here
-        form = PalItemForm()
-        context = {'form': form}
+        form = PalItemForm(instance=request.user.pal)
+        uForm = UserForm(instance=request.user)
+        context = {'form': form, "uForm": uForm}
         return render(request, self.template_name, context)
     
     def post(self, request):
-        item = Pal(pal=request.user.pal)
-        form = PalItemForm(request.POST, instance=item)
+        form = PalItemForm(request.POST, instance=request.user.pal)
+        uForm = UserForm(request.POST, instance=request.user.pal)
         if form.is_valid():
             form.save()
-        return redirect('users:users')
+        if uForm.is_valid():
+            form.save()
+        return redirect('users:profile')
 
     
 class FollowView(TemplateView):

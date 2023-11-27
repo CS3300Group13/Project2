@@ -18,4 +18,10 @@ class RegistrationForm(UserCreationForm):
 class PalItemForm(ModelForm):
     class Meta:
         model = Pal
-        fields = ["user", "about", "following"]
+        fields = ["about"]
+
+
+class UserForm(ModelForm):
+    class Meta:
+        model = User
+        fields = ["first_name", "last_name"]
