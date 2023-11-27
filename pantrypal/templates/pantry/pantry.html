@@ -20,15 +20,7 @@
           <form method="POST">
             {% csrf_token %}
             <div class="modal-body">
-              <div class="mb-3">
-                <label for="foodItem" class="form-label">New Item</label>
-                <input class="form-control" name="item" />
-              </div>
-              <div class="mb-3">
-                <label for="foodQuantity" class="form-label">Quantity</label>
-                <input class="form-control" name="quantity" />
-                <div id="foodQuantity" class="form-text">Enter a number associated with the quantity as well as a unit e.g. 1 loaf for food item bread.</div>
-              </div>
+              {{form}}
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -40,7 +32,7 @@
     </div>
     {% for pantry_item in pantry_items %}
     <div class="row">
-      {{ pantry_item.name }} - {{ pantry_item.quantity }} 
+      {{ pantry_item.name }} - {{pantry_item.foodGroup}}
       
     </div>
     <a type="button" class="btn btn-danger" href="{% url 'pantry:delete_item' pantry_item.pk %}">delete</a>

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
-
+from .forms import PantryItemForm
 from.models import PantryItem
 
 
@@ -10,17 +10,18 @@ class PantryView(TemplateView):
     def get(self, request):
         if not request.user.is_authenticated:
             return redirect('users:login')
+        form = PantryItemForm()
         pantry_items = PantryItem.objects.filter(pal=request.user.pal)
-        context = {'pantry_items' : pantry_items}
+        context = {'pantry_items' : pantry_items, 'form': form}
         return render(request, self.template_name, context)
     
     def post(self, request):
         if not request.user.is_authenticated:
             return redirect('users:login')
-        new_item = request.POST['item']
-        new_foodGroup = request.POST['quantity']
-        new_pantry_item = PantryItem(pal=request.user.pal, name=new_item, foodGroup=new_foodGroup)
-        new_pantry_item.save()
+        item = PantryItem(pal=request.user.pal)
+        form = PantryItemForm(request.POST, instance=item)
+        if form.is_valid():
+            form.save()
         return redirect('pantry:pantry')
     
     
