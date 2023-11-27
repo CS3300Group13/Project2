@@ -66,3 +66,22 @@ class ProfileView(TemplateView):
     
     def post(self, request):
         pass
+    
+    
+class FollowView(TemplateView):
+    template_name = "users/follow.html"
+    
+    def get(self, request):
+        follow_list = request.user.pal.following.all()
+        print(follow_list)
+        unfollowed_list = Pal.objects.exclude(following__in=follow_list)
+        print(unfollowed_list)
+        context = {'unfollowed_list' : unfollowed_list}
+        return render(request, self.template_name, context)
+    
+    
+class AddFriendView(TemplateView):
+    
+    def get(self, request, pk):
+        request.user.pal.following.add(Pal.objects.get(pk=pk))
+        return redirect('users:follow')
