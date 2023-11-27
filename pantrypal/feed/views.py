@@ -1,3 +1,4 @@
+
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 
@@ -12,8 +13,9 @@ class FeedView(TemplateView):
             return redirect('users:login')
         name = request.user.first_name
         friends = request.user.pal.following.all()
+        about = request.user.pal.about
         posts = Post.objects.filter(pal__in=friends)
-        context = {'name' : name, 'posts' : posts}
+        context = {'name': name, 'posts': posts, 'about': about}
         return render(request, self.template_name, context)
     
     def post(self, request):

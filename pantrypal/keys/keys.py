@@ -1,0 +1,1 @@
+OPEN_AI_VAR="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"

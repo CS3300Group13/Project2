@@ -94,7 +94,6 @@ class AddRecipeView(TemplateView):
             condiments = "None"
         else:
             condiments = new_condiments[:-2]
-
         alignmentPrompt = """
         You are a food recipe generator for an app called 'pantrypal' to create delicious ideas for meals.
         You will be given a list of ingredients that a user has, and you should ONLY use these ingredients.
@@ -128,7 +127,6 @@ class AddRecipeView(TemplateView):
         ))
 
         print(response)
-
         recipe_name = response[1].split("Step")[0].strip()
         steps_parts = "Step 1:" + response.split("Step 1:")[1]
 
