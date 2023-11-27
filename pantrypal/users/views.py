@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 from django.contrib.auth import authenticate, login, logout
-
 from users.forms import RegistrationForm
-from .models import Pal
+from users.forms import PalItemForm
+from.models import Pal
 
 
 class LoginView(TemplateView):
@@ -40,7 +40,6 @@ class RegisterView(TemplateView):
             user_profile = Pal(user=user)
             user_profile.save()
             user_profile.following.add(user_profile)
-            
             return redirect('feed:feed')
         else:
             print(form.errors)
@@ -62,7 +61,14 @@ class ProfileView(TemplateView):
     def get(self, request):
         if not request.user.is_authenticated:
             return redirect('users:login')
-        return render(request, self.template_name)
+        #edit here
+        form = PalItemForm()
+        context = {'form': form}
+        return render(request, self.template_name, context)
     
     def post(self, request):
-        pass
+        item = Pal(pal=request.user.pal)
+        form = PalItemForm(request.POST, instance=item)
+        if form.is_valid():
+            form.save()
+        return redirect('users:users')
