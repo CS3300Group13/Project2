@@ -4,6 +4,7 @@ from django.views.generic import TemplateView
 from keys.keys import OPEN_AI_VAR
 from recipes.models import Recipe
 from pantry.models import PantryItem
+from feed.models import Post
 
 
 class RecipeView(TemplateView):
@@ -142,3 +143,12 @@ class AddRecipeView(TemplateView):
         new_recipe = Recipe(pal=request.user.pal, name=recipe_name, steps=steps_parts)
         new_recipe.save()
         return redirect('recipes:recipes')
+    
+    
+class PostView(TemplateView):
+    
+    def get(self, request, pk):
+        recipe = Recipe.objects.get(pk=pk)
+        post = Post(pal=request.user.pal, text=recipe.steps)
+        post.save()
+        return redirect('feed:feed')
