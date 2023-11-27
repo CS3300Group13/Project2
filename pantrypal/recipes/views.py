@@ -138,7 +138,7 @@ class AddRecipeView(TemplateView):
         except:
             recipe_name = ""
         try:
-            steps_parts = resp_message.split(recipe_name)[1]
+            steps_parts = "Step 1: " + resp_message.split("Step 1: ")[1]
         except:
             steps_parts = resp_message
 
