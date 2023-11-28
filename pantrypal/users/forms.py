@@ -19,9 +19,9 @@ class PalItemForm(ModelForm):
     class Meta:
         model = Pal
         fields = ["about"]
-        widgets = {
-            'about': forms.TextInput()
-        }
+        # widgets = {
+        #     'about': forms.TextInput()
+        # }
 
 
 class UserForm(ModelForm):

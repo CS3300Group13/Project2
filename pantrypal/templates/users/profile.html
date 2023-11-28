@@ -1,30 +1,23 @@
-
-{% extends 'base/layout.html' %}
-
-{% block title %}
+{% extends 'base/layout.html' %} {% block title %}
 <title>PantryPal | Pantry</title>
-{% endblock %}
-
-{% block body %}
+{% endblock %} {% block body %}
 <div class="container">
-<form method="POST">
-   {% csrf_token %}
-   <div class="modal-body">
-      <div class="d-flex flex-row">
-         <div>
-            First name: {{uForm.first_name}} 
-         </div>
-         <div>
-            Last name: {{uForm.last_name}}
-         </div>
+  <form method="POST">
+    {% csrf_token %}
+    <div class="modal-body">
+      <div class="d-flex flex-row justify-content-center">
+        <div class="mx-3 fs-4">First name: {{uForm.first_name}}</div>
+        <div class="mx-3 fs-4">Last name: {{uForm.last_name}}</div>
       </div>
-      <br>
-      <div>
-         About: {{form.about}}
+      <br />
+      <div class="d-flex flex-row mx-3 fs-4 justify-content-center align-items-start">
+        <div class="w-auto mx-2">About:</div>
+        <div>{{form.about}}</div>
       </div>
-   </div>
-      <button type="submit" class="btn btn-primary">Save Changes</button>
-</form>
-
+    </div>
+    <div class="d-flex flex-row justify-content-center me-auto ms-auto">
+      <button type="submit" class="btn btn-primary mx-3">Save Changes</button>
+    </div>
+  </form>
 </div>
 {% endblock %}
