@@ -5,7 +5,16 @@
 
 - Version 1.0:
 - - New Features:
+- - - Implementation of being able to add food items into user's pantry, generating a recipe from GPT that uses the ingredients in the user's pantry, able to search and find other users to be friends so you can see their recipe posts as well.
+
+
 - - Bug Fixes:
+- - - Made it so if the user is not logged in and tries to access the feed page it redirects them to the login page first to avoid null pointers from the non-signed in user.
+- - - Made it so the format of the GPT response makes sense for the goal of the website
+
+
+- - Known Bugs and Defects:
+- - - There is no page for the original host page only which means the user has to type in a url extension to see the website
 
 
 # Install Guide
