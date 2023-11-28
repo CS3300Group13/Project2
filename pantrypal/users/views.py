@@ -11,6 +11,8 @@ class LoginView(TemplateView):
     template_name = 'users/login.html'
     
     def get(self, request):
+        if request.user.is_authenticated:
+            return redirect('feed:feed')
         return render(request, self.template_name)
     
     def post(self, request):
