@@ -20,7 +20,7 @@
 # Install Guide
 
 - Pre-requisites: 
-- - Create a folder called keys that has keys.py file with a variable called OPEN_AI_VAR set to your Open AI API key
+- - Create a file and folder in Project2/pantrypal/keys/keys.py with a variable called OPEN_AI_VAR set to your Open AI API key string
 - - Need python 3.11.4 or newer installed
 
 
