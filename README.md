@@ -38,7 +38,7 @@
 - Application Installation & Run
 - - Need to run these command line prompts in the Project2/pantrypal/ folder
 - - python manage.py makemigrations
-- - python manage.py migrate
+- - python manage.py migrate --run-syncdb
 - - python manage.py runserver
 - - Then you can access the server at your local host
 
