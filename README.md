@@ -27,6 +27,7 @@
 - Dependencies and Libraries
 - - Need to pip install Django
 - - Need to pip install Open AI
+- - Need to pip install Pillow
 
 
 - Download & Build Instructions
