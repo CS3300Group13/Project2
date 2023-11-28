@@ -4,11 +4,11 @@
   <div class="container">
     {% for boop in follow_list %}
       {{ boop.user.first_name }} {{ boop.user.last_name }}
-      <a class="btn btn-danger btn-icon-text btn-edit-profile" href="{% url 'users:remove_friend' boop.pk %}">unfollow</a>
+      <a class="btn btn-danger btn-icon-text btn-edit-profile" href="{% url 'users:remove_friend' boop.pk %}">Unfollow</a>
     {% endfor %}
     {% for boop in unfollowed_list %}
         {{ boop.user.first_name }} {{ boop.user.last_name }}
-      <a class="btn btn-primary btn-icon-text btn-edit-profile" href="{% url 'users:add_friend' boop.pk %}">follow</a>
+      <a class="btn btn-primary btn-icon-text btn-edit-profile" href="{% url 'users:add_friend' boop.pk %}">Follow</a>
     {% endfor %}
 
   </div>
