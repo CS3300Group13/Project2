@@ -10,9 +10,18 @@
 <form method="POST">
    {% csrf_token %}
    <div class="modal-body">
-      {{uForm}}
+      <div class="d-flex flex-row">
+         <div>
+            First name: {{uForm.first_name}} 
+         </div>
+         <div>
+            Last name: {{uForm.last_name}}
+         </div>
+      </div>
       <br>
-      {{form}}
+      <div>
+         About: {{form.about}}
+      </div>
    </div>
       <button type="submit" class="btn btn-primary">Save Changes</button>
 </form>
