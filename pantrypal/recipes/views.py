@@ -104,7 +104,7 @@ class AddRecipeView(TemplateView):
         The recipes should be relatively simple and interesting to make.
         
         It is imperative that you only give the recipes in the following format, adjusting the number of steps as necessary:
-        Hi User,
+        Hi,
         The name of the recipe is: {insert_recipe_name_here}
         Step 1: {insert_step_1_step}
         Step 2: {insert_step_2_step}
