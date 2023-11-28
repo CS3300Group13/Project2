@@ -101,5 +101,7 @@ class AddFriendView(TemplateView):
 class RemoveFriendView(TemplateView):
     
     def get(self, request, pk):
-        request.user.pal.following.remove(Pal.objects.get(pk=pk))
+        pal1 = Pal.objects.get(pk=pk)
+        if request.user.pal != pal1:
+            request.user.pal.following.remove(pal1)
         return redirect('users:follow')

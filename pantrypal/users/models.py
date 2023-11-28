@@ -1,7 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
+from PIL import Image
+import requests
+from io import BytesIO
 
-
+response = requests.get("https://bootdey.com/img/Content/avatar/avatar6.png")
+img = Image.open(BytesIO(response.content))
 
 class Pal(models.Model):
     user = models.OneToOneField(
