@@ -21,5 +21,5 @@ class RecipeTestCase(TestCase):
         rec2 = Post.objects.get(text="boil water")
         rec3 = Post.objects.get(text="make salad")
         self.assertEqual(rec1.pal, pal1)
-        self.assertEqual(rec2.name, "boil water")
-        self.assertEqual(rec3.steps, "make salad")
+        self.assertEqual(rec2.text, "boil water")
+        self.assertEqual(rec3.text, "make salad")
