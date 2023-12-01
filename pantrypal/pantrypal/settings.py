@@ -27,6 +27,24 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ALLOW_CREDENTIALS = True
+
+CSRF_TRUSTED_ORIGINS = ['8000-cs-790367527784-default.cs-us-east1-pkhd.cloudshell.dev']
+
+CORS_REPLACE_HTTPS_REFERER = True
+
+CSRF_COOKIE_DOMAIN = 'cloudshell.dev'
+
+CORS_ORIGIN_WHITELIST = (
+    '8000-cs-790367527784-default.cs-us-east1-pkhd.cloudshell.dev',
+    'cloudshell.dev',
+    'https://8000-cs-790367527784-default.cs-us-east1-pkhd.cloudshell.dev/',
+)
+
 
 # Application definition
 
