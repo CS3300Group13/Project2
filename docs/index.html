@@ -99,6 +99,32 @@
 </body>
 <body>
     <h1>Testing:</h1>
-    <p>Write here</p>
+    <p>Our testing strategy utilized both black box and white box testing. Most of our black box testing was regression
+        testing. Meaning, each time we implemented a new feature we would test each of our previously implemented features
+        to ensure they still worked. For example, when we changed the model of the pantry item to allow for better recipe
+        generation we ensured that items were still able to be added and deleted correctly. The first time this test was
+        run we realized we had instances of pantry items based on different models causing an error. To fix this we deleted
+        our database and regenerated it. After running the test again we were able to add and delete items appropriately,
+        so we continued our development.</p>
+    <p>
+        We also tested each feature thoroughly using acceptability testing to make sure all
+        features worked the way we intended. An example of this was when we implemented the following page we tested to make
+        sure following another user added them to the following list and unfollowing the user added them to the unfollowing
+        list. The first time we tested this we noticed that the unfollowing list did not update properly when a previously
+        unfollowed user was followed. This made us go back and refactor the feature. After fixing it we re-did the test,
+        and it passed allowing us to continue on to other features.
+        </p>
+    <p>Our whitebox testing was mostly done through unit testing
+        using Django TestCase. These tests were focused on ensuring the models we designed for each of the components were
+        functional and effective. For example, one of our unit tests tested removing a follower from another user's following
+        list. This test checked to make sure our functions were acting on the correct instances of a model. This test passed
+        giving us certainty that changes made to models on one page of the app were made globally, not just to a local copy
+        of the model.
+        </p>
+    <p>Testing, encompassing black box regression and white box unit testing, ensured the reliability of
+        our application by identifying and resolving issues at both functional and structural levels, ultimately ensuring
+        a thorough development process and delivering a high-quality final product. The testing approach provided confidence
+        in implementing new features, addressing challenges, and refining the application.
+    </p>
 </body>
 </html>
